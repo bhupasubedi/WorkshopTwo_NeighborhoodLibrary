@@ -88,6 +88,28 @@ public class NeighborhoodLibrary {
             }
 
         }
+
+        String choice;
+        do {
+            System.out.println("C. Select a book to check in");
+            System.out.println("X. Go back to the home screen");
+            choice = scanner.nextLine().trim();
+
+
+            switch (choice) {
+                case "C":
+                    promptToCheckInBook();
+                    break;
+                case "X":
+                    System.out.println(" Exiting the main menu");
+                    break;
+                default:
+                    System.out.println("Invalid choice, try again");
+            }
+
+        } while (!choice.equals("X"));
+
+
     }
 
     public static void showAvailableBooks() {
@@ -120,25 +142,39 @@ public class NeighborhoodLibrary {
     }
 
     public static void promptToCheckOutBook() {
-        // enter book id
-        // enter name
-        // then check out the book
 
         System.out.println("Enter the book Id");
         int choice = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Please, enter your name to check out a book ");
         String userName = scanner.nextLine();
-    }
 
-
-    public static void checkOutTheBookWithName() {
 
         for (Book book : inventory) {
-            if (!book.getCheckedOut()) {
-                System.out.println(book);
-
+            if (!book.getCheckedOut() && book.getId() == choice) {
+                book.setCheckedOut(true);
+                book.setCheckedOutTo(userName);
             }
+
         }
+
     }
+
+
+    public static void promptToCheckInBook() {
+
+        System.out.println("Enter the book Id");
+        int choice = scanner.nextInt();
+        for (Book book : inventory) {
+            if (book.getCheckedOut() && book.getId() == choice) {
+                book.setCheckedOut(false);
+                book.setCheckedOutTo("");
+            }
+
+        }
+
+    }
+
+
 }
+
