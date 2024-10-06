@@ -53,7 +53,6 @@ public class NeighborhoodLibrary {
 
         int screen;
         do {
-            System.out.println("Pick a book");
             System.out.println("1) Show Available Books");
             System.out.println("2) Show Checked Out Books");
             System.out.println("3) - Exit ");
@@ -78,17 +77,8 @@ public class NeighborhoodLibrary {
             }
 
         }
+
         while (screen != 3);
-    }
-
-    public static void showAvailableBooks() {
-
-        for (Book book : inventory) {
-            if (!book.getCheckedOut()) {
-                System.out.println(book);
-
-            }
-        }
     }
 
     public static void CheckedOut() {
@@ -96,7 +86,59 @@ public class NeighborhoodLibrary {
             if (book.getCheckedOut()) {
                 System.out.println(book);
             }
+
+        }
+    }
+
+    public static void showAvailableBooks() {
+        for (Book book : inventory) {
+            if (!book.getCheckedOut()) {
+                System.out.println(book);
+            }
         }
 
+        int choice;
+        do {
+            System.out.println("1. Select a book to checkout");
+            System.out.println("2. Exit to main menu");
+            choice = scanner.nextInt();
+
+
+            switch (choice) {
+                case 1:
+                    promptToCheckOutBook();
+                    break;
+                case 2:
+                    System.out.println(" Exit the main menu");
+                    break;
+                default:
+                    System.out.println("Invalid choice, try again");
+            }
+
+        } while (choice != 2);
+
+    }
+
+    public static void promptToCheckOutBook() {
+        // enter book id
+        // enter name
+        // then check out the book
+
+        System.out.println("Enter the book Id");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Please, enter your name to check out a book ");
+        String userName = scanner.nextLine();
+    }
+
+
+    public static void checkOutTheBookWithName() {
+
+        for (Book book : inventory) {
+            if (!book.getCheckedOut()) {
+                System.out.println(book);
+
+            }
+        }
     }
 }
